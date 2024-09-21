@@ -2,7 +2,17 @@
 
 # Rock-Paper-Scissors Game
 
-A simple Rock-Paper-Scissors game implemented in Python. Play against the computer and see who wins!
+This project is a Python-based implementation of the popular game "Rock, Paper, Scissors". It provides the opportunity to play the game against a computer, which makes its moves based on random choice.
+
+# Project Structure
+
+```
+rock-paper-scissor/
+|
+|- src/
+|  |- game.py - the main game class
+|__ README.me
+```
 
 ## How to Play
 
@@ -14,10 +24,10 @@ A simple Rock-Paper-Scissors game implemented in Python. Play against the comput
 5. The game continues for three rounds.
 6. At the end of the game, the overall winner (or if it’s a draw) is displayed.
 
-## Usage
-
+## Running the Project
+To run this project
 ```bash
-python rock_paper_scissors.py
+python src/game.py
 ```
 
 ## Rules

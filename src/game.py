@@ -1,4 +1,5 @@
 import random
+from typing import List
 
 
 class RockPaperScissors:
@@ -11,11 +12,11 @@ class RockPaperScissors:
         computer_score (int): Computer's score.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes the game with default scores and movement options.
         """
-        self.movements = ['rock🪨', 'paper📖', 'scissors✂️']
+        self.movements: List["str"] = ["rock🪨", "paper📖", "scissors✂️"]
         self.your_score: int = 0
         self.computer_score: int = 0
 
@@ -41,7 +42,7 @@ class RockPaperScissors:
         Returns:
             int: The computer's choice (1 for rock, 2 for paper, 3 for scissors).
         """
-        choices: list = [1, 2, 3]
+        choices: List[int] = [1, 2, 3]
         return random.choice(choices)
 
     def print_movements(self) -> None:
@@ -52,19 +53,7 @@ class RockPaperScissors:
         for index, elem in enumerate(self.movements, 1):
             print(f"• {index}: {elem}")
 
-    def play(self) -> None:
-        """
-        Plays a round of Rock-Paper-Scissors.
-        Gets the player's choice, computes the winner, and updates scores.
-        """
-        y_choice = self.your_choice()
-        c_choice = self.computer_choice()
-        if y_choice and c_choice:
-            self.score(y_choice=y_choice, c_choice=c_choice)
-            self.show_decision(y_choice=y_choice, c_choice=c_choice)
-
     def score(self, y_choice: int, c_choice: int) -> None:
-
         """
         Computes the score based on player and computer choices.
 
@@ -74,8 +63,11 @@ class RockPaperScissors:
         """
         if y_choice == c_choice:
             pass
-        elif (y_choice == 1 and c_choice == 2) or (y_choice == 2 and c_choice == 3) or (
-                y_choice == 3 and c_choice == 1):
+        elif (
+            (y_choice == 1 and c_choice == 2)
+            or (y_choice == 2 and c_choice == 3)
+            or (y_choice == 3 and c_choice == 1)
+        ):
             self.computer_score += 1
         else:
             self.your_score += 1
@@ -85,7 +77,9 @@ class RockPaperScissors:
         Displays the current scores.
         """
         print("-" * 30)
-        print(f" Your score: {self.your_score} | Computer's score: {self.computer_score} ")
+        print(
+            f" Your score: {self.your_score} | Computer's score: {self.computer_score} "
+        )
         print("-" * 30)
 
     def show_decision(self, y_choice: int, c_choice: int) -> None:
@@ -97,7 +91,9 @@ class RockPaperScissors:
             c_choice (int): Computer's choice (1 for rock, 2 for paper, 3 for scissors).
         """
         print("-" * 30)
-        print(f" Your choice: {self.movements[y_choice - 1]} | Computer's choice: {self.movements[c_choice - 1]} ")
+        print(
+            f" Your choice: {self.movements[y_choice - 1]} | Computer's choice: {self.movements[c_choice - 1]} "
+        )
         print("-" * 30)
 
     def winner(self) -> None:
@@ -114,6 +110,17 @@ class RockPaperScissors:
             print("😭" * 10, " You lost! ", "😭" * 10)
             self.show_score()
 
+    def play(self) -> None:
+        """
+        Main method to play Rock, Paper, Scissors
+        Gets the player's choice, computes the winner, and updates scores.
+        """
+        y_choice = self.your_choice()
+        c_choice = self.computer_choice()
+        if y_choice and c_choice:
+            self.score(y_choice=y_choice, c_choice=c_choice)
+            self.show_decision(y_choice=y_choice, c_choice=c_choice)
+
 
 if __name__ == "__main__":
     while True:
@@ -122,6 +129,11 @@ if __name__ == "__main__":
             game.play()
         game.winner()
 
-        if input("Do you want to quit? Enter 'q': ").lower() == "q":
+        if (
+            input(
+                "Do you want to play again? (Enter any key to continue or 'q' to quit): "
+            ).lower()
+            == "q"
+        ):
             print("See you later!")
             break
